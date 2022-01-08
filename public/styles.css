@@ -210,11 +210,11 @@ body {
     margin: 0;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
     #projects {
         height: 200vh;
     }
-    .projects-content, .welcome-content {
+    .contact {
         font-size: 10pt;
     }
     .projects-container {
