@@ -39,7 +39,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 2vw;
+    font-size: 2vmax;
 }
 
 .welcome-content img {
@@ -63,7 +63,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 2vw;
+    font-size: 2vmax;
 }
 
 .projects-header {
