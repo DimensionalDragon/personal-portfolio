@@ -186,15 +186,15 @@ body {
 }
 
 .contact:hover {
-    animation: hover-down 0.2s ease-in-out forwards;
+    animation: hover-up 0.2s ease-in-out forwards;
 }
 
-@keyframes hover-down {
+@keyframes hover-up {
     0% {
         transform: translate(0, 0);
     }
     100% {
-        transform: translate(0, -5px);
+        transform: translate(0, -3px);
     }
 }
 
@@ -214,7 +214,7 @@ body {
     #projects {
         height: 200vh;
     }
-    .projects-content {
+    .projects-content, .welcome-content {
         font-size: 10pt;
     }
     .projects-container {

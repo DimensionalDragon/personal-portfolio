@@ -20,7 +20,6 @@ app.set('view engine', 'ejs');
 app.get('/', async (req, res) => {
     try {
         const projects = await Project.find().sort({ _id: -1 }).limit(6);
-        console.log(projects);
         res.render('index', {pageTitle: 'DimensionalDragon', projects});
     } catch(err) {
         return res.status(500).json({ok: false, message: err.message});
