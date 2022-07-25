@@ -106,7 +106,7 @@ const Home = ({ projects }: HomeProps) => {
 };
 
 export async function getServerSideProps(context: any) {
-    const fullUrl: string = context.req.headers.referer;
+    const fullUrl: string = context.req.headers.referer || process.env.HOME_URL;
     const [protocol, domainAndPath] = fullUrl.split('://');
     const [domain] = domainAndPath.split('/');
     const baseUrl = `${protocol}://${domain}`;
