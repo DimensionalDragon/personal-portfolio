@@ -1,86 +1,121 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
+import Head from 'next/head';
 
-const Home: NextPage = () => {
-  return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+import type { Project } from '../models/project';
 
-      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
-        <h1 className="text-6xl font-bold">
-          Welcome to{' '}
-          <a className="text-blue-600" href="https://nextjs.org">
-            Next.js!
-          </a>
-        </h1>
+import axios from 'axios';
 
-        <p className="mt-3 text-2xl">
-          Get started by editing{' '}
-          <code className="rounded-md bg-gray-100 p-3 font-mono text-lg">
-            pages/index.tsx
-          </code>
-        </p>
+import Nav from '../components/Nav';
+import ProjectCard from '../components/ProjectCard';
+import React from 'react';
 
-        <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
-          <a
-            href="https://nextjs.org/docs"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Documentation &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Find in-depth information about Next.js features and its API.
-            </p>
-          </a>
+type HomeProps = {
+    projects: Project[];
+};
 
-          <a
-            href="https://nextjs.org/learn"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Learn &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Learn about Next.js in an interactive course with quizzes!
-            </p>
-          </a>
+const Home = ({ projects }: HomeProps) => {
+    return (
+        <div className="flex min-h-screen flex-col items-center justify-center text-white">
+            <Head>
+                <title>DimensionalDragon</title>
+                <script
+                    src="https://kit.fontawesome.com/9b73585f4c.js"
+                    crossOrigin="anonymous"
+                ></script>
+            </Head>
 
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Examples &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Discover and deploy boilerplate example Next.js projects.
-            </p>
-          </a>
+            <Nav forHome={true}></Nav>
 
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Deploy &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+            <main className="flex w-full flex-1 flex-col items-center justify-center text-center">
+                <section
+                    id="welcome-section"
+                    className="w-full bg-primary-blue"
+                >
+                    <div className="hero min-h-screen">
+                        <div className="hero-overlay bg-opacity-60"></div>
+                        <div className="hero-content text-center text-neutral-content">
+                            <div className="max-w-md">
+                                {/* TODO: Get an image to put here
+                                <Image src='' alt='' /> */}
+                                <h1 className="mb-5 text-5xl font-bold">
+                                    DimensionalDragon
+                                </h1>
+                                <p className="mb-5">Learning web development</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section
+                    id="projects"
+                    className="bg-secondary-blue pb-4 scroll-my-16"
+                >
+                    <div className="projects-content">
+                        <h2 className="projects-header text-5xl my-5 p-3">
+                            These are some of my projects
+                        </h2>
+                        <div className="projects-container flex justify-center items-center flex-wrap gap-x-16">
+                            {projects.map((project, i) => (
+                                <ProjectCard key={i + 1} project={project} />
+                            ))}
+                        </div>
+                        <a href="/projects">
+                            <button className="btn btn-wide my-3">
+                                See More
+                            </button>
+                        </a>
+                    </div>
+                </section>
+                <section
+                    className="flex flex-col items-center justify-center bg-tertiary-blue w-full h-[75vh]"
+                    id="contacts"
+                >
+                    <h2 className="text-5xl my-5 p-3 font-bold">Contact me</h2>
+                    <div className="contacts-container select-none">
+                        <a
+                            href="https://www.github.com/DimensionalDragon/"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="group inline-flex items-center mx-3 text-xl "
+                            id="profile-link"
+                        >
+                            <i className="fa-brands fa-github mx-1 group-hover:-translate-y-2 transition-transform"></i>
+                            <b className="group-hover:-translate-y-2 transition-transform">
+                                Github
+                            </b>
+                        </a>
+                        <a
+                            href="https://www.linkedin.com/in/andhikasatrya/"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="group inline-flex items-center mx-3 text-xl transition-transform"
+                            id="profile-link"
+                        >
+                            <i className="fa-brands fa-linkedin mx-1 group-hover:-translate-y-2 transition-transform"></i>
+                            <b className="group-hover:-translate-y-2 transition-transform">
+                                LinkedIn
+                            </b>
+                        </a>
+                    </div>
+                    <div className="email mt-14 text-xl">
+                        <p className="email-desc">Or email me at</p>
+                        <p className="email-address">andhikangurah@gmail.com</p>
+                    </div>
+                </section>
+            </main>
         </div>
-      </main>
+    );
+};
 
-      <footer className="flex h-24 w-full items-center justify-center border-t">
-        <a
-          className="flex items-center justify-center gap-2"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-        </a>
-      </footer>
-    </div>
-  )
+export async function getServerSideProps(context: any) {
+    const fullUrl: string = context.req.headers.referer;
+    const [protocol, domainAndPath] = fullUrl.split('://');
+    const [domain] = domainAndPath.split('/');
+    const baseUrl = `${protocol}://${domain}`;
+    const projectsAPIEndpoint: string = `${baseUrl}/api/projects?limit=6&key=${process.env.API_KEY}`;
+    const response = await axios.get(projectsAPIEndpoint);
+    const projects: Project[] = response.data;
+    return {
+        props: { projects },
+    };
 }
 
-export default Home
+export default Home;
