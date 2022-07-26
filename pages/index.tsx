@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Script from 'next/script';
 
 import type { Project } from '../models/project';
 
@@ -17,11 +18,11 @@ const Home = ({ projects }: HomeProps) => {
         <div className="flex min-h-screen flex-col items-center justify-center text-white">
             <Head>
                 <title>DimensionalDragon</title>
-                <script
-                    src="https://kit.fontawesome.com/9b73585f4c.js"
-                    crossOrigin="anonymous"
-                ></script>
             </Head>
+            <Script
+                src="https://kit.fontawesome.com/9b73585f4c.js"
+                crossOrigin="anonymous"
+            ></Script>
 
             <Nav forHome={true}></Nav>
 
